@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>林屿 LIN YU — 平面与视觉设计</title>
+<meta name="description" content="林屿，独立平面设计师，常驻上海。做书籍、品牌标识、活动视觉，也做屏幕里会动的东西。作品与联系方式。">
+<meta name="theme-color" content="#0c0a08">
+<link rel="stylesheet" href="assets/fonts.css">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ---------- tokens ---------- */
+:root{
+  --bg:#0c0a08;
+  --surface:#181512;
+  --ink:#ffffff;
+  --muted:#8f8a84;
+  --accent:#c9a45a;
+  --accent-ink:#0c0a08;
+  --paper:#e9e3d7;
+  --margin:clamp(18px,3.2vw,40px);
+  --step-small:clamp(.8125rem,.79rem + .1vw,.875rem);
+  --step-body:clamp(1.0625rem,1rem + .25vw,1.1875rem);
+  --step-lead:clamp(1.25rem,1.1rem + .7vw,1.625rem);
+  --step-head:clamp(2.5rem,1.2rem + 5vw,5.5rem);
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --text:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--text);font-size:var(--step-body);line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+::selection{background:var(--accent);color:var(--accent-ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:var(--margin);top:-60px;z-index:99;background:var(--accent);color:var(--accent-ink);padding:10px 16px;font-size:var(--step-small);text-decoration:none;transition:top .2s}
+.skip:focus{top:14px}
+.wrap{max-width:1600px;margin:0 auto;padding-inline:var(--margin)}
+
+/* ---------- monument (name as architecture) ---------- */
+.monument{display:block;width:100%;height:auto;overflow:visible}
+.monument text{font-family:var(--display);font-weight:800;fill:currentColor}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:var(--margin)}
+.hero-top,.hero-bottom{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;position:relative;z-index:2}
+.hero-top{position:absolute;top:var(--margin);left:var(--margin);right:var(--margin)}
+.hero-bottom{position:absolute;bottom:var(--margin);left:var(--margin);right:var(--margin);align-items:flex-end}
+.hero-claim{max-width:34ch;font-size:var(--step-small);line-height:1.55;color:var(--ink)}
+.hero-claim p{margin:0}
+.btn-cta{
+  display:inline-flex;align-items:center;gap:.6em;margin-top:18px;
+  background:var(--accent);color:var(--accent-ink);border:0;
+  padding:13px 22px;font-family:var(--display);font-weight:800;
+  font-size:1.05rem;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;
+  min-height:44px;transition:transform .18s ease,background .18s ease;
+}
+.btn-cta:hover{transform:translateY(-3px);background:#dcb96f}
+.btn-cta:active{transform:translateY(0)}
+.nav{display:flex;gap:clamp(14px,2vw,30px);font-size:var(--step-small)}
+.nav a{text-decoration:none;color:var(--ink);opacity:.82;transition:opacity .18s,color .18s;padding:6px 0}
+.nav a:hover{opacity:1;color:var(--accent)}
+.hero-meta{font-size:var(--step-small);color:var(--muted)}
+.hero-meta b{color:var(--ink);font-weight:600}
+.hero-links{display:flex;gap:18px;font-size:var(--step-small)}
+.hero-links a{color:var(--muted);text-decoration:none;transition:color .18s}
+.hero-links a:hover{color:var(--accent)}
+.hero-name{color:var(--ink);margin:0;line-height:0}
+.hero-inset{display:none}
+
+/* ---------- section frame ---------- */
+.section{position:relative;padding-block:clamp(96px,13vw,190px)}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:clamp(56px,7vw,110px)}
+.section-title{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:-.01em;line-height:.9;font-size:var(--step-head);margin:0}
+.section-note{font-size:var(--step-small);color:var(--muted);max-width:30ch}
+
+/* ---------- work: loose scatter ---------- */
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter{
+  background:transparent;color:var(--muted);border:1px solid #3a352f;
+  padding:9px 16px;min-height:44px;font-size:var(--step-small);
+  transition:color .18s,border-color .18s,background .18s;
+}
+.filter:hover{color:var(--ink);border-color:var(--muted)}
+.filter[aria-pressed="true"]{color:var(--accent-ink);background:var(--accent);border-color:var(--accent)}
+.projects{display:block}
+.project{margin:0 0 clamp(80px,12vw,170px);position:relative}
+.project.is-hidden{display:none}
+.project-figure{margin:0}
+.project-frame{display:block;overflow:hidden;background:var(--surface)}
+.project-frame img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.02);transition:transform .5s ease,filter .5s ease}
+.project:hover .project-frame img{transform:scale(1.03);filter:grayscale(.55) contrast(1.04)}
+.project-tag{font-size:var(--step-small);color:var(--muted);margin:0 0 10px;letter-spacing:.02em}
+.project-name{font-size:clamp(1.05rem,.95rem + .5vw,1.35rem);font-weight:600;margin:14px 0 2px}
+.project-desc{font-size:var(--step-small);color:var(--muted);margin:0}
+/* placements */
+.p1{width:min(58%,760px);margin-left:0}
+.p1 .project-frame{aspect-ratio:3/2}
+.p2{width:min(30%,360px);margin-left:auto;margin-right:0;margin-top:-90px}
+.p2 .project-frame{aspect-ratio:4/5}
+.p3{width:min(64%,880px);margin-left:16%}
+.p3 .project-frame{aspect-ratio:16/9}
+.p4{width:min(52%,700px);margin-left:0}
+.p4 .project-frame{aspect-ratio:3/2}
+.p5{width:min(30%,360px);margin-left:auto;margin-top:-60px}
+.p5 .project-frame{aspect-ratio:4/5}
+.p6{width:min(64%,880px);margin-left:16%}
+.p6 .project-frame{aspect-ratio:16/9}
+.project-remark{font-size:clamp(1.15rem,1rem + 1vw,1.7rem);line-height:1.45;max-width:20ch;margin:0 0 clamp(80px,12vw,150px) 6%;color:var(--ink)}
+.project-remark span{color:var(--accent)}
+
+/* ---------- about: pinned title + reading column ---------- */
+.about{background:var(--surface)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:start}
+.about-pin{position:sticky;top:12vh}
+.about-pin h2{font-family:var(--display);font-weight:800;font-size:clamp(6rem,13vw,13rem);line-height:.8;letter-spacing:-.02em;margin:0;text-transform:uppercase;color:var(--ink)}
+.about-pin h2 em{display:block;font-style:normal;font-family:var(--text);font-weight:400;font-size:var(--step-small);letter-spacing:.3em;color:var(--accent);margin-top:22px}
+.about-body p{margin:0 0 1.4em;max-width:36ch}
+.about-body p.lead{font-size:var(--step-lead);line-height:1.5}
+.services{list-style:none;padding:0;margin:36px 0 0;display:grid;grid-template-columns:repeat(2,1fr);gap:14px 26px}
+.services li{font-size:var(--step-small);color:var(--muted);padding-bottom:12px;border-bottom:1px solid #342f29}
+.services li b{color:var(--ink);font-weight:600;display:block;font-size:var(--step-body);margin-bottom:2px}
+.about-portrait{margin-top:44px}
+.about-portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:grayscale(1);border-radius:0}
+.about-portrait figcaption{font-size:var(--step-small);color:var(--muted);margin-top:12px}
+
+/* ---------- contact: display rows ---------- */
+.contact-row{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:clamp(22px,3vw,40px) 0;border-top:1px solid #2c2721}
+.contact-row:last-child{border-bottom:1px solid #2c2721}
+.contact-label{font-size:var(--step-small);color:var(--muted);min-width:100px}
+.contact-value{font-size:clamp(1.6rem,1rem + 3vw,3.4rem);font-weight:600;line-height:1.1;letter-spacing:-.01em}
+.contact-value a{text-decoration:none;transition:color .18s}
+.contact-value a:hover{color:var(--accent)}
+.contact-big{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(3.5rem,3rem + 8vw,9rem);line-height:.85;letter-spacing:-.01em;margin:0 0 clamp(50px,7vw,100px);color:var(--ink)}
+.contact-big a{color:var(--accent);text-decoration:none}
+.contact-big a:hover{color:var(--ink)}
+
+/* ---------- footer: inverted, name returns ---------- */
+.footer{background:var(--paper);color:var(--bg);padding:clamp(80px,10vw,140px) var(--margin) 40px}
+.footer-invite{font-size:clamp(1.3rem,1rem + 1.4vw,2.2rem);line-height:1.35;max-width:24ch;margin:0 0 clamp(50px,7vw,90px)}
+.footer-invite a{color:var(--bg);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:6px}
+.footer-name{margin:0;color:var(--bg);line-height:0}
+.footer-bottom{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:clamp(50px,7vw,90px);font-size:var(--step-small);color:#5b5347}
+.footer-bottom a{color:#5b5347}
+.credits{max-width:52ch;line-height:1.6}
+.credits b{color:var(--bg);font-weight:600}
+
+/* ---------- motion (transform + opacity only) ---------- */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+.js .hero-name{transform:scale(.96);opacity:0;transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity 1s ease}
+.js .hero-name.in{transform:none;opacity:1}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal,.js .hero-name{opacity:1!important;transform:none!important;transition:none!important}
+  .project:hover .project-frame img,.btn-cta:hover{transform:none}
+}
+
+/* ---------- phone ---------- */
+@media (max-width:720px){
+  .hero{min-height:100svh;justify-content:flex-start;padding-top:calc(var(--margin) + 4px)}
+  .hero-top{position:relative;top:auto;left:auto;right:auto}
+  .hero-claim{max-width:26ch;font-size:var(--step-small)}
+  .nav{gap:14px}
+  .nav a{font-size:var(--step-small)}
+  .hero-name{position:absolute;top:22%;left:var(--margin);right:var(--margin)}
+  .hero-inset{display:block;position:absolute;left:0;right:0;bottom:0;height:38svh;z-index:1}
+  .hero-inset img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.02)}
+  .hero-bottom{bottom:calc(38svh + 14px)}
+  .hero-meta,.hero-links{font-size:12px}
+  .section{padding-block:clamp(70px,14vw,110px)}
+  .section-head{margin-bottom:48px}
+  .p1,.p3,.p4,.p6{width:100%;margin-left:0}
+  .p2,.p5{width:68%;margin-left:auto;margin-top:0}
+  .p3,.p6{width:82%}
+  .project{margin-bottom:72px}
+  .project-remark{margin:0 0 72px;font-size:1.2rem;max-width:24ch}
+  .about-grid{grid-template-columns:1fr;gap:34px}
+  .about-pin{position:static}
+  .about-pin h2{font-size:clamp(5rem,26vw,9rem)}
+  .services{grid-template-columns:1fr 1fr}
+  .contact-value{font-size:clamp(1.5rem,7vw,2.4rem)}
+  .contact-row{align-items:flex-start;flex-direction:column;gap:8px}
+}
+@media (max-width:380px){
+  .nav{gap:10px}
+  .hero-claim{max-width:22ch}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#work">跳到作品</a>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="hero-top">
+    <div>
+      <div class="hero-claim reveal">
+        <p>独立平面设计师。做书、做标识、做活动视觉，<br>也做屏幕里会动的东西。</p>
+      </div>
+      <a class="btn-cta reveal" href="#work">看作品 <span aria-hidden="true">↓</span></a>
+    </div>
+    <nav class="nav" aria-label="主导航">
+      <a href="#work">作品</a>
+      <a href="#about">关于</a>
+      <a href="#contact">联系</a>
+    </nav>
+  </div>
+
+  <h1 class="hero-name" aria-label="林屿，LIN YU">
+    <svg class="monument" viewBox="0 0 1200 215" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+      <text x="0" y="190" font-size="230" textLength="1200" lengthAdjust="spacingAndGlyphs">LIN YU</text>
+    </svg>
+  </h1>
+
+  <div class="hero-inset">
+    <img src="assets/img/hero-inset.jpg" alt="暗光下双手点亮火花的工作瞬间" width="900" height="1125">
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-meta"><b>林屿</b> · 上海 · 平面与视觉设计</div>
+    <div class="hero-links">
+      <a href="mailto:hello@linyu.studio">写封邮件</a>
+      <span aria-hidden="true">·</span>
+      <span>2022 — 2026</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ================= WORK ================= -->
+  <section class="section wrap" id="work" aria-labelledby="work-title">
+    <div class="section-head reveal">
+      <h2 class="section-title" id="work-title">作品</h2>
+      <div class="filters" role="group" aria-label="按类别筛选作品">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">全部</button>
+        <button class="filter" type="button" data-filter="brand" aria-pressed="false">品牌</button>
+        <button class="filter" type="button" data-filter="print" aria-pressed="false">出版</button>
+        <button class="filter" type="button" data-filter="space" aria-pressed="false">空间</button>
+        <button class="filter" type="button" data-filter="digital" aria-pressed="false">数字</button>
+      </div>
+    </div>
+    <p class="section-note reveal" style="margin:-32px 0 64px">选六个，按类别看一看；点上面的标签可以筛。</p>
+
+    <div class="projects" id="projects">
+      <article class="project p1 reveal" data-cat="print">
+        <p class="project-tag">出版 / 2024</p>
+        <figure class="project-figure">
+          <div class="project-frame"><img src="assets/img/work-01.jpg" alt="深色木桌上平铺的斧、锤、钳与皮手套" width="1200" height="800" loading="lazy"></div>
+          <figcaption>
+            <h3 class="project-name">《潮汐》书籍装帧</h3>
+            <p class="project-desc">给一本关于海岸的诗集做封面、内文与函套。</p>
+          </figcaption>
+        </figure>
+      </article>
+
+      <article class="project p2 reveal" data-cat="brand">
+        <p class="project-tag">品牌 / 2024</p>
+        <figure class="project-figure">
+          <div class="project-frame"><img src="assets/img/work-02.jpg" alt="双手捧着一把新鲜的绿色云杉嫩芽" width="900" height="1125" loading="lazy"></div>
+          <figcaption>
+            <h3 class="project-name">山见 · 咖啡品牌标识</h3>
+            <p class="project-desc">从种子到杯子的一整套字标与包装。</p>
+          </figcaption>
+        </figure>
+      </article>
+
+      <p class="project-remark reveal">字要站得住，<span>也要留得下呼吸。</span></p>
+
+      <article class="project p3 reveal" data-cat="brand">
+        <p class="project-tag">活动 / 2023</p>
+        <figure class="project-figure">
+          <div class="project-frame"><img src="assets/img/work-03.jpg" alt="牛仔外套前双手握着一台复古旁轴相机" width="1400" height="788" loading="lazy"></div>
+          <figcaption>
+            <h3 class="project-name">「回声」音乐节视觉系统</h3>
+            <p class="project-desc">海报、票券、舞台背景与一整季的动态图形。</p>
+          </figcaption>
+        </figure>
+      </article>
+
+      <article class="project p4 reveal" data-cat="print">
+        <p class="project-tag">出版 / 2023</p>
+        <figure class="project-figure">
+          <div class="project-frame"><img src="assets/img/work-05.jpg" alt="手指在调音台上推动一排推子" width="1200" height="800" loading="lazy"></div>
+          <figcaption>
+            <h3 class="project-name">器物志 · 陶艺画册</h3>
+            <p class="project-desc">一百二十件器物的摄影编排与印制监制。</p>
+          </figcaption>
+        </figure>
+      </article>
+
+      <article class="project p5 reveal" data-cat="space">
+        <p class="project-tag">空间 / 2022</p>
+        <figure class="project-figure">
+          <div class="project-frame"><img src="assets/img/work-04.jpg" alt="双手捧着一堆深蓝色的葡萄" width="900" height="1125" loading="lazy"></div>
+          <figcaption>
+            <h3 class="project-name">留白 · 展厅导视</h3>
+            <p class="project-desc">一间小美术馆的标识、门牌与参观动线。</p>
+          </figcaption>
+        </figure>
+      </article>
+
+      <article class="project p6 reveal" data-cat="digital">
+        <p class="project-tag">数字 / 2022</p>
+        <figure class="project-figure">
+          <div class="project-frame"><img src="assets/img/work-06.jpg" alt="深色台面上往手冲滤杯里注水的铜壶" width="1400" height="788" loading="lazy"></div>
+          <figcaption>
+            <h3 class="project-name">「之间」App 界面</h3>
+            <p class="project-desc">一款慢阅读应用的界面与图标系统。</p>
+          </figcaption>
+        </figure>
+      </article>
+    </div>
+    <p class="section-note" id="empty-note" hidden>这个类别还没有放上来的作品。</p>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="section about" id="about" aria-labelledby="about-title">
+    <div class="wrap about-grid">
+      <div class="about-pin reveal">
+        <h2 id="about-title">About<em>关于我</em></h2>
+      </div>
+      <div class="about-body">
+        <p class="lead reveal">我是林屿，一个把排版当作盖房子的平面设计师，常驻上海。</p>
+        <p class="reveal">2018 年从印刷厂的一台旧海德堡开始，后来做过出版社的美术编辑，2019 年起独立接活。我喜欢字被放得很大、纸有重量、颜色克制到只剩一处的那种东西。</p>
+        <p class="reveal">合作方式很直接：先把要解决的问题说清楚，再决定它该是一本书、一个标识，还是一块屏幕。做过的东西横跨出版、品牌、活动、空间与数字，目前也接少量教学与评审。</p>
+        <ul class="services reveal">
+          <li><b>品牌标识</b>字标、规范、包装</li>
+          <li><b>书籍与出版物</b>装帧、内文、印制</li>
+          <li><b>活动视觉</b>海报、票券、动态</li>
+          <li><b>数字界面</b>界面、图标系统</li>
+        </ul>
+        <figure class="about-portrait reveal">
+          <img src="assets/img/work-02.jpg" alt="双手捧着新鲜的绿色云杉嫩芽，作为工作状态的写照" width="900" height="1125" loading="lazy">
+          <figcaption>工作台的一角，2025 年春。</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="section wrap" id="contact" aria-labelledby="contact-title">
+    <div class="section-head reveal">
+      <h2 class="section-title" id="contact-title">联系</h2>
+      <p class="section-note">有想做的东西，写封信就好。</p>
+    </div>
+    <h3 class="contact-big reveal">有想法？<br><a href="mailto:hello@linyu.studio?subject=聊聊一个项目">聊聊 →</a></h3>
+    <div class="contact-rows reveal">
+      <div class="contact-row"><span class="contact-label">邮箱</span><span class="contact-value"><a href="mailto:hello@linyu.studio">hello@linyu.studio</a></span></div>
+      <div class="contact-row"><span class="contact-label">城市</span><span class="contact-value">上海 · 中国</span></div>
+      <div class="contact-row"><span class="contact-label">档期</span><span class="contact-value">2026 春季开放</span></div>
+      <div class="contact-row"><span class="contact-label">回复</span><span class="contact-value">通常两天内</span></div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <p class="footer-invite reveal">感谢看到这里。<br>如果哪天想一起做点什么，<a href="mailto:hello@linyu.studio">给我写信</a>。</p>
+  <h2 class="footer-name" aria-label="林屿，LIN YU">
+    <svg class="monument" viewBox="0 0 1200 215" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+      <text x="0" y="190" font-size="230" textLength="1200" lengthAdjust="spacingAndGlyphs">LIN YU</text>
+    </svg>
+  </h2>
+  <div class="footer-bottom">
+    <span>© 2026 林屿 · 保留所有权利</span>
+    <p class="credits"><b>说明</b>：本页姓名、项目与联系方式为示例内容，替换成你自己的即可。照片为氛围配图（来自 picsum.photos / Unsplash，摄影：Todd Quackenbush、Jean Lakosnyk、Kristian Karlsson、Maja Petric、Drew Patrick Miller、Karl Fredrickson、Kelley Bozarth），已存到 <b>assets/img/</b>，可以换成真实作品图。</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* entrance: reveal on first view; content stays visible without JS */
+  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal, .hero-name'));
+  if (reduce || !('IntersectionObserver' in window)) {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function(el){ io.observe(el); });
+  }
+
+  /* one live thing: filter the work by category, with an honest empty state */
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.filter'));
+  var projects = Array.prototype.slice.call(document.querySelectorAll('.project'));
+  var remark = document.querySelector('.project-remark');
+  var empty = document.getElementById('empty-note');
+  buttons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var f = btn.getAttribute('data-filter');
+      buttons.forEach(function(b){ b.setAttribute('aria-pressed', String(b === btn)); });
+      var shown = 0;
+      projects.forEach(function(p){
+        var match = (f === 'all' || p.getAttribute('data-cat') === f);
+        p.classList.toggle('is-hidden', !match);
+        if (match) shown++;
+      });
+      if (remark) remark.style.display = (f === 'all') ? '' : 'none';
+      if (empty) empty.hidden = (shown !== 0);
+    });
+  });
+})();
+</script>
+</body>
+</html>
