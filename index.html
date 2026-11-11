@@ -6,6 +6,7 @@
 <title>林屿 LIN YU — 平面与视觉设计</title>
 <meta name="description" content="林屿，独立平面设计师，常驻上海。做书籍、品牌标识、活动视觉，也做屏幕里会动的东西。作品与联系方式。">
 <meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230c0a08'/%3E%3Ctext x='32' y='47' font-family='Arial Narrow,Impact,sans-serif' font-size='46' font-weight='800' fill='%23c9a45a' text-anchor='middle'%3ELY%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/fonts.css">
 <script>document.documentElement.classList.add('js');</script>
 <style>
@@ -151,14 +152,14 @@ button{font:inherit;cursor:pointer}
 .credits{max-width:52ch;line-height:1.6}
 .credits b{color:var(--bg);font-weight:600}
 
-/* ---------- motion (transform + opacity only) ---------- */
-.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
-.js .reveal.in{opacity:1;transform:none}
-.js .hero-name{transform:scale(.96);opacity:0;transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity 1s ease}
-.js .hero-name.in{transform:none;opacity:1}
+/* ---------- motion ----------
+   内容一律默认可见：整页截图、打印、关掉 JS 都不会丢内容。
+   只在首屏名字做一次编排好的入场（CSS 动画自动播放），其余靠 hover 反馈。 */
+.js .hero-name{animation:heroIn .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes heroIn{from{opacity:.4;transform:scale(.965)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .js .reveal,.js .hero-name{opacity:1!important;transform:none!important;transition:none!important}
+  .js .hero-name{animation:none}
   .project:hover .project-frame img,.btn-cta:hover{transform:none}
 }
 
@@ -220,7 +221,7 @@ button{font:inherit;cursor:pointer}
   </h1>
 
   <div class="hero-inset">
-    <img src="assets/img/hero-inset.jpg" alt="暗光下双手点亮火花的工作瞬间" width="900" height="1125">
+    <img src="assets/img/work-01.jpg" alt="深色木桌上平铺的手工工具，作为工作状态的写照" width="1200" height="800">
   </div>
 
   <div class="hero-bottom">
@@ -252,7 +253,7 @@ button{font:inherit;cursor:pointer}
       <article class="project p1 reveal" data-cat="print">
         <p class="project-tag">出版 / 2024</p>
         <figure class="project-figure">
-          <div class="project-frame"><img src="assets/img/work-01.jpg" alt="深色木桌上平铺的斧、锤、钳与皮手套" width="1200" height="800" loading="lazy"></div>
+          <div class="project-frame"><img src="assets/img/work-01.jpg" alt="深色木桌上平铺的斧、锤、钳与皮手套" width="1200" height="800"></div>
           <figcaption>
             <h3 class="project-name">《潮汐》书籍装帧</h3>
             <p class="project-desc">给一本关于海岸的诗集做封面、内文与函套。</p>
@@ -263,7 +264,7 @@ button{font:inherit;cursor:pointer}
       <article class="project p2 reveal" data-cat="brand">
         <p class="project-tag">品牌 / 2024</p>
         <figure class="project-figure">
-          <div class="project-frame"><img src="assets/img/work-02.jpg" alt="双手捧着一把新鲜的绿色云杉嫩芽" width="900" height="1125" loading="lazy"></div>
+          <div class="project-frame"><img src="assets/img/work-02.jpg" alt="双手捧着一把新鲜的绿色云杉嫩芽" width="900" height="1125"></div>
           <figcaption>
             <h3 class="project-name">山见 · 咖啡品牌标识</h3>
             <p class="project-desc">从种子到杯子的一整套字标与包装。</p>
@@ -276,7 +277,7 @@ button{font:inherit;cursor:pointer}
       <article class="project p3 reveal" data-cat="brand">
         <p class="project-tag">活动 / 2023</p>
         <figure class="project-figure">
-          <div class="project-frame"><img src="assets/img/work-03.jpg" alt="牛仔外套前双手握着一台复古旁轴相机" width="1400" height="788" loading="lazy"></div>
+          <div class="project-frame"><img src="assets/img/work-03.jpg" alt="牛仔外套前双手握着一台复古旁轴相机" width="1400" height="788"></div>
           <figcaption>
             <h3 class="project-name">「回声」音乐节视觉系统</h3>
             <p class="project-desc">海报、票券、舞台背景与一整季的动态图形。</p>
@@ -287,7 +288,7 @@ button{font:inherit;cursor:pointer}
       <article class="project p4 reveal" data-cat="print">
         <p class="project-tag">出版 / 2023</p>
         <figure class="project-figure">
-          <div class="project-frame"><img src="assets/img/work-05.jpg" alt="手指在调音台上推动一排推子" width="1200" height="800" loading="lazy"></div>
+          <div class="project-frame"><img src="assets/img/work-05.jpg" alt="手指在调音台上推动一排推子" width="1200" height="800"></div>
           <figcaption>
             <h3 class="project-name">器物志 · 陶艺画册</h3>
             <p class="project-desc">一百二十件器物的摄影编排与印制监制。</p>
@@ -298,7 +299,7 @@ button{font:inherit;cursor:pointer}
       <article class="project p5 reveal" data-cat="space">
         <p class="project-tag">空间 / 2022</p>
         <figure class="project-figure">
-          <div class="project-frame"><img src="assets/img/work-04.jpg" alt="双手捧着一堆深蓝色的葡萄" width="900" height="1125" loading="lazy"></div>
+          <div class="project-frame"><img src="assets/img/work-04.jpg" alt="双手捧着一堆深蓝色的葡萄" width="900" height="1125"></div>
           <figcaption>
             <h3 class="project-name">留白 · 展厅导视</h3>
             <p class="project-desc">一间小美术馆的标识、门牌与参观动线。</p>
@@ -309,7 +310,7 @@ button{font:inherit;cursor:pointer}
       <article class="project p6 reveal" data-cat="digital">
         <p class="project-tag">数字 / 2022</p>
         <figure class="project-figure">
-          <div class="project-frame"><img src="assets/img/work-06.jpg" alt="深色台面上往手冲滤杯里注水的铜壶" width="1400" height="788" loading="lazy"></div>
+          <div class="project-frame"><img src="assets/img/work-06.jpg" alt="深色台面上往手冲滤杯里注水的铜壶" width="1400" height="788"></div>
           <figcaption>
             <h3 class="project-name">「之间」App 界面</h3>
             <p class="project-desc">一款慢阅读应用的界面与图标系统。</p>
@@ -337,7 +338,7 @@ button{font:inherit;cursor:pointer}
           <li><b>数字界面</b>界面、图标系统</li>
         </ul>
         <figure class="about-portrait reveal">
-          <img src="assets/img/work-02.jpg" alt="双手捧着新鲜的绿色云杉嫩芽，作为工作状态的写照" width="900" height="1125" loading="lazy">
+          <img src="assets/img/work-02.jpg" alt="双手捧着新鲜的绿色云杉嫩芽，作为工作状态的写照" width="900" height="1125">
           <figcaption>工作台的一角，2025 年春。</figcaption>
         </figure>
       </div>
@@ -376,21 +377,6 @@ button{font:inherit;cursor:pointer}
 
 <script>
 (function(){
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* entrance: reveal on first view; content stays visible without JS */
-  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal, .hero-name'));
-  if (reduce || !('IntersectionObserver' in window)) {
-    reveals.forEach(function(el){ el.classList.add('in'); });
-  } else {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    reveals.forEach(function(el){ io.observe(el); });
-  }
-
   /* one live thing: filter the work by category, with an honest empty state */
   var buttons = Array.prototype.slice.call(document.querySelectorAll('.filter'));
   var projects = Array.prototype.slice.call(document.querySelectorAll('.project'));
